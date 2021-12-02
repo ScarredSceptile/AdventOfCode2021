@@ -1,5 +1,4 @@
 ﻿using AdventOfCode2021.Advent;
-using System;
 
 namespace AdventOfCode2021
 {
@@ -7,7 +6,7 @@ namespace AdventOfCode2021
     {
         static void Main(string[] args)
         {
-            Day1.Star2();
+            Day2.Star2();
         }
     }
 }
