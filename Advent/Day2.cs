@@ -8,7 +8,7 @@ namespace AdventOfCode2021.Advent
     {
         public static void Star1()
         {
-            var measurements = File.ReadAllLines(Directory.GetCurrentDirectory() + @"\Day2.txt");
+            var measurements = Input.Get("Day2");
 
             int horizontal = measurements.Where(m => m.StartsWith("forward")).Select(forward => int.Parse(forward.Remove(0, 8))).Sum();
             int up = measurements.Where(m => m.StartsWith("up")).Select(forward => int.Parse(forward.Remove(0, 3))).Sum();
@@ -20,7 +20,7 @@ namespace AdventOfCode2021.Advent
 
         public static void Star2()
         {
-            var measurements = File.ReadAllLines(Directory.GetCurrentDirectory() + @"\Day2.txt");
+            var measurements = Input.Get("Day2");
 
             int horizontal = measurements.Where(m => m.StartsWith("forward")).Select(forward => int.Parse(forward.Remove(0, 8))).Sum();
 

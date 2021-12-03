@@ -7,7 +7,7 @@ namespace AdventOfCode2021.Advent
     {
         public static void Star1()
         {
-            var measurements = File.ReadAllLines(Directory.GetCurrentDirectory() + @"\Day1.txt");
+            var measurements = Input.Get("Day1");
             var numericalMeasurements = Array.ConvertAll(measurements, m => int.Parse(m));
 
             int larger = 0;
@@ -24,7 +24,7 @@ namespace AdventOfCode2021.Advent
 
         public static void Star2()
         {
-            var measurements = File.ReadAllLines(Directory.GetCurrentDirectory() + @"\Day1.txt");
+            var measurements = Input.Get("Day1");
             var numericalMeasurements = Array.ConvertAll(measurements, m => int.Parse(m));
 
             int[] tripleNums = new int[numericalMeasurements.Length - 2];
@@ -43,12 +43,7 @@ namespace AdventOfCode2021.Advent
             for (int i = 1; i < tripleNums.Length; i++)
             {
                 if (tripleNums[i] > previous)
-                {
                     larger++;
-                    Console.WriteLine($"{tripleNums[i]} (increase)");
-                }
-                else
-                    Console.WriteLine($"{tripleNums[i]} (decrease)");
                 previous = tripleNums[i];
             }
             Console.WriteLine($"The total amount of increases is: {larger}");
