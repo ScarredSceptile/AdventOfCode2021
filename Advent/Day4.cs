@@ -13,14 +13,7 @@ namespace AdventOfCode2021.Advent
             int lastNum = 0;
             foreach (var num in Numbers)
             {
-                lastNum = num;
-                foreach (var card in Cards)
-                {
-                    if (card.num.Contains(num))
-                    {
-                        card.check[Array.IndexOf(card.num, num)] = true;
-                    }
-                }
+                (lastNum, Cards) = CheckBingoBoards(num, Cards);
                 Cards.ForEach(card => card.CheckBingo());
                 if (Cards.Any(card => card.isBingo)) break;
             }
@@ -37,14 +30,7 @@ namespace AdventOfCode2021.Advent
             int lastNum = 0;
             foreach (var num in Numbers)
             {
-                lastNum = num;
-                foreach (var card in Cards)
-                {
-                    if (card.num.Contains(num))
-                    {
-                        card.check[Array.IndexOf(card.num, num)] = true;
-                    }
-                }
+                (lastNum, Cards) = CheckBingoBoards(num, Cards);
                 Cards.ForEach(card => card.CheckBingo());
                 if (Cards.All(card => card.isBingo))
                     break;
@@ -75,6 +61,14 @@ namespace AdventOfCode2021.Advent
             return (nums, cards);
         }
 
+        private static (int, List<BingoCard>) CheckBingoBoards(int num, List<BingoCard> Cards)
+        {
+            foreach (var card in Cards)
+                if (card.num.Contains(num))
+                    card.check[Array.IndexOf(card.num, num)] = true;
+            return (num, Cards);
+        }
+
         private class BingoCard
         {
             public int[] num;
@@ -95,9 +89,8 @@ namespace AdventOfCode2021.Advent
                 {
                     //Rows
                     bingo = check[i * 5] is true && check[i * 5 + 1] is true && check[i * 5 + 2] is true && check[i * 5 + 3] is true && check[i * 5 + 4] is true;
-                    if (bingo) break;
                     //Colums
-                    bingo = check[i] is true && check[i + 5] is true && check[i + 10] is true && check[i + 15] is true && check[i + 20] is true;
+                    bingo =  bingo || (check[i] is true && check[i + 5] is true && check[i + 10] is true && check[i + 15] is true && check[i + 20] is true);
                     if (bingo) break;
                 }
                 isBingo = bingo;

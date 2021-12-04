@@ -17,13 +17,7 @@ namespace AdventOfCode2021.Advent
                 gamma += measurements.GroupBy(arr => arr[i]).OrderByDescending(m => m.Count()).FirstOrDefault().Key;
             }
 
-            foreach (var c in gamma)
-            {
-                if (c == '1')
-                    epsilon += '0';
-                else if (c == '0')
-                    epsilon += '1';
-            }
+            epsilon = new string(gamma.Select(c => c == '1' ? '0' : '1').ToArray());
 
             var gammaNum = Convert.ToInt32(gamma, 2);
             var epsilonNum = Convert.ToInt32(epsilon, 2);
