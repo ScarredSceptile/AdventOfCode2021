@@ -14,10 +14,7 @@ namespace AdventOfCode2021.Advent
 
             for (int i = 0; i < measurements[0].Length; i++)
             {
-                var tally = measurements.GroupBy(arr => arr[i]).ToArray();
-
-                var One = tally.OrderByDescending(m => m.Count()).FirstOrDefault();
-                gamma += One.Key;
+                gamma += measurements.GroupBy(arr => arr[i]).OrderByDescending(m => m.Count()).FirstOrDefault().Key;
             }
 
             foreach (var c in gamma)
@@ -52,15 +49,13 @@ namespace AdventOfCode2021.Advent
             {
                 if (scrubber.Length == 1)
                     break;
-                var mostCommon = scrubber.GroupBy(arr => arr[i]).OrderBy(m => m.Key).OrderBy(m => m.Count()).FirstOrDefault().Key;
-                scrubber = scrubber.Where(o => o[i] == mostCommon).ToArray();
+                var leastCommon = scrubber.GroupBy(arr => arr[i]).OrderBy(m => m.Key).OrderBy(m => m.Count()).FirstOrDefault().Key;
+                scrubber = scrubber.Where(o => o[i] == leastCommon).ToArray();
             }
 
             var oxyNum = Convert.ToInt32(oxygen[0], 2);
             var scrubNum = Convert.ToInt32(scrubber[0], 2);
 
-            Console.WriteLine(oxygen.Length);
-            Console.WriteLine(scrubber.Length);
             Console.WriteLine(oxyNum * scrubNum);
         }
     }
