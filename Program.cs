@@ -6,7 +6,7 @@ namespace AdventOfCode2021
     {
         static void Main(string[] args)
         {
-            Day4.Star2();
+            Day5.Star2();
         }
     }
 }
