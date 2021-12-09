@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
 namespace AdventOfCode2021.Advent
@@ -37,14 +36,7 @@ namespace AdventOfCode2021.Advent
         {
             public string[] Input;
             public string[] Output;
-
-            public string A;
-            public string B;
-            public string C;
-            public string D;
-            public string E;
-            public string F;
-            public string G;
+            public string A, B, C, D, E, F, G;
 
             public Digits(string numbers)
             {
@@ -69,15 +61,6 @@ namespace AdventOfCode2021.Advent
                 var four = Input.Where(n => n.Length == 4).FirstOrDefault();
                 var eight = Input.Where(n => n.Length == 7).FirstOrDefault();
 
-                if (one is null)
-                    one = Output.Where(n => n.Length == 2).FirstOrDefault();
-                if (seven is null)
-                    one = Output.Where(n => n.Length == 3).FirstOrDefault();
-                if (four is null)
-                    one = Output.Where(n => n.Length == 4).FirstOrDefault();
-                if (eight is null)
-                    one = Output.Where(n => n.Length == 7).FirstOrDefault();
-
                 C = F = one;
 
                 var cf = C.ToCharArray();
@@ -99,20 +82,14 @@ namespace AdventOfCode2021.Advent
             public void PlaceRest()
             {
                 var fiveDigit = Input.Where(n => n.Length == 5).Distinct().ToList();
-                foreach (var dig in Output)
-                    if (dig.Length == 5 && fiveDigit.Contains(dig) == false)
-                        fiveDigit.Add(dig);
 
                 var three = fiveDigit.Where(d => d.Intersect(C).Count() == C.Count()).FirstOrDefault();
-
                 D = three.Where(t => D.Any(d => d == t) is true).FirstOrDefault().ToString();
                 B = B.Where(b => b != D[0]).FirstOrDefault().ToString();
-
                 G = three.Where(t => G.Any(g => g == t) is true).FirstOrDefault().ToString();
                 E = E.Where(e => e != G[0]).FirstOrDefault().ToString();
 
                 var two = fiveDigit.Where(d => d.Contains(B)).FirstOrDefault();
-
                 F = two.Where(t => F.Any(f => f == t) is true).FirstOrDefault().ToString();
                 C = C.Where(c => c != F[0]).FirstOrDefault().ToString();
             }
