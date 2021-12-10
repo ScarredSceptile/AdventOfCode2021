@@ -84,7 +84,7 @@ namespace AdventOfCode2021.Advent
             for (int i = 0; i < input.Length; i++)
                 for (int j = 0; j < input[i].Length; j++)
                     if (input[i][j] != '9')
-                        grid.Add(new Tile(i, j, input[i][j] - '0'));
+                        grid.Add(new Tile(i, j));
 
             List<int> basins = new List<int>();
 
@@ -121,13 +121,11 @@ namespace AdventOfCode2021.Advent
         private class Tile
         {
             public Vector2 Placement;
-            public int Value;
             public bool Used;
 
-            public Tile(int x, int y, int value)
+            public Tile(int x, int y)
             {
                 Placement = new Vector2(x, y);
-                Value = value;
                 Used = false;
             }
         }
