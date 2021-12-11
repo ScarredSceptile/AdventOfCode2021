@@ -15,11 +15,13 @@ namespace AdventOfCode2021.Advent
             char[] opening = { '(', '[', '{', '<' };
             char[] closing = { ')', ']', '}', '>' };
 
-            Dictionary<char, int> values = new Dictionary<char, int>();
-            values.Add(')', 3);
-            values.Add(']', 57);
-            values.Add('}', 1197);
-            values.Add('>', 25137);
+            Dictionary<char, int> values = new Dictionary<char, int>
+            {
+                { ')', 3 },
+                { ']', 57 },
+                { '}', 1197 },
+                { '>', 25137 }
+            };
 
             List<char> characters = new List<char>();
             int errorScore = 0;
@@ -33,7 +35,7 @@ namespace AdventOfCode2021.Advent
                         characters.Add(c);
                     else if (closing.Contains(c))
                     {
-                        if (characters[characters.Count - 1] == GetOpening(c))
+                        if (characters[^1] == GetOpening(c))
                             characters.RemoveAt(characters.Count - 1);
                         else
                         {
@@ -54,11 +56,13 @@ namespace AdventOfCode2021.Advent
             char[] opening = { '(', '[', '{', '<' };
             char[] closing = { ')', ']', '}', '>' };
 
-            Dictionary<char, int> values = new Dictionary<char, int>();
-            values.Add(')', 1);
-            values.Add(']', 2);
-            values.Add('}', 3);
-            values.Add('>', 4);
+            Dictionary<char, int> values = new Dictionary<char, int>
+            {
+                { ')', 1 },
+                { ']', 2 },
+                { '}', 3 },
+                { '>', 4 }
+            };
 
             List<char> characters = new List<char>();
             List<long> sortingScores = new List<long>();
@@ -73,7 +77,7 @@ namespace AdventOfCode2021.Advent
                         characters.Add(c);
                     else if (closing.Contains(c))
                     {
-                        if (characters[characters.Count - 1] == GetOpening(c))
+                        if (characters[^1] == GetOpening(c))
                             characters.RemoveAt(characters.Count - 1);
                         else
                         {
