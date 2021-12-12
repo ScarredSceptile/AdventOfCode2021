@@ -66,9 +66,7 @@ namespace AdventOfCode2021.Advent
 
                 } while (octopi.Where(o => o.Level > 9 && o.Flashed is false).ToArray().Length > 0);
 
-                if (octopi.All(o => o.Flashed))
-                    allFlash = true;
-
+                allFlash = octopi.All(o => o.Flashed);
                 octopi.Where(o => o.Level > 9).ToList().ForEach(o => o.Level = 0);
                 octopi.Where(o => o.Flashed).ToList().ForEach(o => o.Flashed = false);
             } while (allFlash is false);
