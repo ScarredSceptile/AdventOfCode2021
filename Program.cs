@@ -4,9 +4,9 @@ namespace AdventOfCode2021
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Day12.Star2();
+            Day13.Star2();
         }
     }
 }
